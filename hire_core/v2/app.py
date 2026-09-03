@@ -6,18 +6,21 @@ from gestor_de_candidato import GestorDeCandidato
 
 
 def construir_gestor() -> GestorDeCandidato:
-    estado_inicial = EstadoBase._registro_estados["APLICADO"]
-    return GestorDeCandidato(estado_inicial, Candidato())
+    estado_inicial: EstadoBase = EstadoBase._registro_estados["APLICADO"]
+    return GestorDeCandidato(
+        estado_inicial, 
+        Candidato()
+    )
 
 
 if __name__ == "__main__":
-    gestor = construir_gestor()
+    gestor: GestorDeCandidato = construir_gestor()
     print(gestor.estado_actual.nombre_estado())
     for _ in range(5):
         gestor.avanzar()
         print(gestor.estado_actual.nombre_estado())
 
-    gestor_rechazado = construir_gestor()
+    gestor_rechazado: GestorDeCandidato = construir_gestor()
     gestor_rechazado.avanzar()
     gestor_rechazado.avanzar()
     gestor_rechazado.rechazar()

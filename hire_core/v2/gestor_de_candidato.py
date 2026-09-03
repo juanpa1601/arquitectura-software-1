@@ -5,7 +5,11 @@ from estados import Estado
 
 
 class GestorDeCandidato:
-    def __init__(self, estado_inicial: Estado, candidato: Candidato) -> None:
+    def __init__(
+        self, 
+        estado_inicial: Estado, 
+        candidato: Candidato
+    ) -> None:
         self._estado_actual: Estado = estado_inicial
         self._candidato: Candidato = candidato
 
@@ -14,7 +18,10 @@ class GestorDeCandidato:
         return self._estado_actual
 
     @estado_actual.setter
-    def estado_actual(self, nuevo_estado: Estado) -> None:
+    def estado_actual(
+        self, 
+        nuevo_estado: Estado
+    ) -> None:
         if nuevo_estado.nombre_estado() != self._estado_actual.transicion():
             raise ValueError(
                 f"Transición inválida: {self._estado_actual.nombre_estado()} -> {nuevo_estado.nombre_estado()}"
@@ -25,7 +32,10 @@ class GestorDeCandidato:
     def candidato(self) -> Candidato:
         return self._candidato
 
-    def _actualizar_estado(self, nuevo_estado: Estado) -> None:
+    def _actualizar_estado(
+        self, 
+        nuevo_estado: Estado
+    ) -> None:
         """Uso interno: solo debe ser invocado por los colaboradores Estado/EstadoBase."""
         self._estado_actual = nuevo_estado
 

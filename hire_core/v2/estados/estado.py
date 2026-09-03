@@ -1,7 +1,10 @@
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Optional
+from abc import (
+    ABC, 
+    abstractmethod
+)
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from gestor_de_candidato import GestorDeCandidato
@@ -13,13 +16,19 @@ class Estado(ABC):
         ...
 
     @abstractmethod
-    def transicion(self) -> Optional[str]:
+    def transicion(self) -> str | None:
         ...
 
     @abstractmethod
-    def actualizar(self, gestor_candidato: GestorDeCandidato) -> None:
+    def actualizar(
+        self, 
+        gestor_candidato: GestorDeCandidato
+    ) -> None:
         ...
 
     @abstractmethod
-    def rechazar(self, gestor_candidato: GestorDeCandidato) -> None:
+    def rechazar(
+        self, 
+        gestor_candidato: GestorDeCandidato
+    ) -> None:
         ...

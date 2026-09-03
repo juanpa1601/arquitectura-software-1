@@ -10,5 +10,8 @@ class Candidato:
         return self._estado
 
     @estado.setter
-    def estado(self, valor: str) -> None:
+    def estado(
+        self, 
+        valor: str
+    ) -> None:
         self._estado = valor
