@@ -33,3 +33,4 @@ class EstadoBase(Estado):
     ) -> None:
         estado_rechazado: EstadoBase = EstadoBase._registro_estados["RECHAZADO"]
         gestor_candidato._actualizar_estado(estado_rechazado)
+    
