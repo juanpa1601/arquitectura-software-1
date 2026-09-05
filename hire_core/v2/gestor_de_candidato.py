@@ -17,27 +17,25 @@ class GestorDeCandidato:
     def estado_actual(self) -> Estado:
         return self._estado_actual
 
-    @estado_actual.setter
-    def estado_actual(
-        self, 
-        nuevo_estado: Estado
-    ) -> None:
-        if nuevo_estado.nombre_estado() != self._estado_actual.transicion():
-            raise ValueError(
-                f"Transición inválida: {self._estado_actual.nombre_estado()} -> {nuevo_estado.nombre_estado()}"
-            )
-        self._estado_actual = nuevo_estado
-
     @property
     def candidato(self) -> Candidato:
         return self._candidato
 
     def _actualizar_estado(
-        self, 
+        self,
         nuevo_estado: Estado
     ) -> None:
         """Uso interno: solo debe ser invocado por los colaboradores Estado/EstadoBase."""
+        transicion_valida: bool = nuevo_estado.nombre_estado() in (
+            self._estado_actual.transicion(),
+            "RECHAZADO",
+        )
+        if not transicion_valida:
+            raise ValueError(
+                f"Transición inválida: {self._estado_actual.nombre_estado()} -> {nuevo_estado.nombre_estado()}"
+            )
         self._estado_actual = nuevo_estado
+        self._candidato.estado = nuevo_estado.nombre_estado()
 
     def avanzar(self) -> None:
         if self._estado_actual.transicion() is None:
